@@ -1,0 +1,18 @@
+{
+    "joddb" : "JODDB",
+
+    "arabic" : "عربي",
+    "arabicLang" : "العربية",
+    "english": "English",
+    "ar": "AR",
+    
+    "login" : "تسجيل دخول",
+    "userName" : "اسم المستخدم",
+    "enterCivil" : "ادخل رقمك المدني",
+    
+    "enterValue":"الرجاء ادخال قيمة.",
+    "errorCivilId":"please write a valid civil id and content 12 digits",
+    "enterValidEmail" : "الرجاء ادخال بريد الكتروني صحيح",
+    "logout" : "تسجيل خروج",
+    "nointernetMsg" : "اتصال بطيء أو فقدت الاتصال بالإنترنت ,تحقق من إعدادات الإنترنت لديك"   
+}

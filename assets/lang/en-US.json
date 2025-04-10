@@ -1,0 +1,19 @@
+{
+    "joddb" : "JODDB",
+
+    "arabic" : "عربي",
+    "arabicLang" : "العربية",
+    "english": "English",
+    "ar": "AR",
+    
+    "login" : "Login",
+    "userName" : "Username",
+    "enterCivil" : "ادخل رقمك المدني",
+    
+    "enterValue":"Please enter a value.",
+    "errorCivilId":"please write a valid civil id and content 12 digits",
+    "enterValidEmail" : "Enter Valid Email",
+    "logout" : "Logout",
+    "nointernetMsg" : "Slow or no internet connection. Check your internet settings"
+   
+}
