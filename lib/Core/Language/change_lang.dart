@@ -3,7 +3,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../Utils/headers.dart';
 import '../Services/globals.dart';
 import '../Utils/locator.dart';
 import 'config.dart';
@@ -24,6 +23,5 @@ changeLang(BuildContext context, String selectedLang) async {
     lang = 'ar';
   }
 
-  globalHeaders["Accept-Language"] = lang;
   return local;
 }

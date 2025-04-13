@@ -26,23 +26,20 @@ class DefaultAppbar extends StatelessWidget {
               ? Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: IconButtonStyleWidget(
-                  icon: SvgPicture.asset(SvgAssets.arrowBack),
+                  icon: SvgPicture.asset(SvgAssets.arrowLeft),
                   onPressed: () {
                     Navigator.pop(context);
                   },
                 ),
               )
               : const SizedBox(),
-      title:
-          isBack
-              ? Text(
-                title ?? '',
-                style: TextThemeStyle.textThemeStyle.titleLarge!.copyWith(
-                  color: AppColors.mainColor,
-                  fontWeight: FontWeight.w600,
-                ),
-              )
-              : Image.asset(ImageAssets.logo),
+      title: Text(
+        isBack ? title ?? '' : '',
+        style: TextThemeStyle.textThemeStyle.titleLarge!.copyWith(
+          color: AppColors.mainColor,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
     );
   }
 }

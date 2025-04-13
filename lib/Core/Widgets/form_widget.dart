@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../Core/Style/form_style.dart';
 import '../../Core/Theme/text_theme.dart';
+import '../Services/Spacer/spacer_static.dart';
 
 class TextFormFieldWidget extends StatelessWidget {
   final TextEditingController? controller;
@@ -14,7 +15,7 @@ class TextFormFieldWidget extends StatelessWidget {
   final Widget? prefixIcon;
   final Widget? suffix;
   final Color? labelColor;
-  final Widget? label;
+  final String? title;
   final TextDirection? textDirection;
   final void Function(String)? onChanged;
   final Widget? suffixIcon;
@@ -57,7 +58,7 @@ class TextFormFieldWidget extends StatelessWidget {
     this.onSaved,
     this.labelColor,
     this.contentPadding,
-    this.label,
+    this.title,
     this.filledColor,
     this.radius,
     this.textAlign,
@@ -72,40 +73,49 @@ class TextFormFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      initialValue: value,
-      maxLines: maxLines,
-      focusNode: focusNode,
-      onSaved: onSaved,
-      onChanged: onChanged,
-      obscureText: obscureText,
-      readOnly: readOnly ?? false,
-      onTap: onTap,
-      textAlign: textAlign ?? TextAlign.start,
-      validator: validator,
-      onFieldSubmitted: onFieldSubmitted,
-      textDirection: textDirection,
-      inputFormatters: inputFormatters,
-      textInputAction: textInputAction ?? TextInputAction.next,
-      keyboardType: keyboardType ?? TextInputType.text,
-      onTapOutside: (event) {
-        SystemChannels.textInput.invokeMethod('TextInput.hide');
-      },
-      style: style ?? TextThemeStyle.textThemeStyle.bodyMedium,
-      decoration: AppStyles.formStyle(hint,
-          radius: radius ?? 10,
-          label: label,
-          borderColor: borderColor,
-          labelColor: labelColor,
-          filledColor: filledColor ?? Colors.transparent,
-          suffixIcon: suffixIcon,
-          suffix: suffix,
-          prefixIcon: prefixIcon,
-          focusBorderColor: focusBorderColor,
-          contentPadding: contentPadding ??
-              EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
-          context: context),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(title ?? '', style: TextThemeStyle.textThemeStyle.bodyMedium!),
+        StaticSpacer.spacer4,
+        TextFormField(
+          controller: controller,
+          initialValue: value,
+          maxLines: maxLines,
+          focusNode: focusNode,
+          onSaved: onSaved,
+          onChanged: onChanged,
+          obscureText: obscureText,
+          readOnly: readOnly ?? false,
+          onTap: onTap,
+          textAlign: textAlign ?? TextAlign.start,
+          validator: validator,
+          onFieldSubmitted: onFieldSubmitted,
+          textDirection: textDirection,
+          inputFormatters: inputFormatters,
+          textInputAction: textInputAction ?? TextInputAction.next,
+          keyboardType: keyboardType ?? TextInputType.text,
+          onTapOutside: (event) {
+            SystemChannels.textInput.invokeMethod('TextInput.hide');
+          },
+          style: style ?? TextThemeStyle.textThemeStyle.bodyMedium,
+          decoration: AppStyles.formStyle(
+            hint,
+            radius: radius ?? 10,
+            borderColor: borderColor,
+            labelColor: labelColor,
+            filledColor: filledColor ?? Colors.transparent,
+            suffixIcon: suffixIcon,
+            suffix: suffix,
+            prefixIcon: prefixIcon,
+            focusBorderColor: focusBorderColor,
+            contentPadding:
+                contentPadding ??
+                EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+            context: context,
+          ),
+        ),
+      ],
     );
   }
 }

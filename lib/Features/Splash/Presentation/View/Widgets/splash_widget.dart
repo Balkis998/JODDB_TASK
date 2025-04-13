@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../Core/Style/assets.dart';
+import '../../../../../Core/Utils/locator.dart';
+import '../../../../Auth/Presentation/View/login_screen.dart';
+import '../../../../Main/Presentation/View/main_screen.dart';
 
 class SplashWidget extends StatefulWidget {
   const SplashWidget({super.key});
@@ -9,21 +13,27 @@ class SplashWidget extends StatefulWidget {
 }
 
 class _SplashWidgetState extends State<SplashWidget> {
-  // void _navigateAfterDelay() async {
-  //   final prefs = locator<SharedPreferences>();
-  //   final isLoggedIn = prefs.containsKey('access_token');
+  @override
+  void initState() {
+    _navigateAfterDelay();
+    super.initState();
+  }
 
-  //   await Future.delayed(const Duration(seconds: 3));
+  void _navigateAfterDelay() async {
+    final prefs = locator<SharedPreferences>();
+    final isLoggedIn = prefs.containsKey('access_token');
 
-  //   if (!mounted) return;
+    await Future.delayed(const Duration(seconds: 3));
 
-  //   Navigator.of(context).pushReplacement(
-  //     MaterialPageRoute(
-  //       builder: (context) =>
-  //           isLoggedIn ? const MainScreen() : const LoginScreen(),
-  //     ),
-  //   );
-  // }
+    if (!mounted) return;
+
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder:
+            (context) => isLoggedIn ? const MainScreen() : const LoginScreen(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

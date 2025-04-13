@@ -55,7 +55,7 @@ class MainButton extends StatelessWidget {
                     color:
                         isBordered && isDisabled
                             ? AppColors.borderColor
-                            : color ?? AppColors.mainColor,
+                            : color ?? AppColors.secondaryColor,
                     width: 1.w,
                   )
                   : isDisabled
@@ -65,7 +65,7 @@ class MainButton extends StatelessWidget {
               isBordered
                   ? bgColor ?? AppColors.white
                   : isDisabled
-                  ? AppColors.darkGrey
+                  ? AppColors.grey
                   : color ?? AppColors.primary,
           gradient:
               isGradiunt == true
@@ -92,7 +92,7 @@ class MainButton extends StatelessWidget {
                             isBordered
                                 ? isBordered && isDisabled
                                     ? AppColors.borderColor
-                                    : color ?? AppColors.mainColor
+                                    : color ?? AppColors.secondaryColor
                                 : AppColors.white,
                       ),
                 ),
