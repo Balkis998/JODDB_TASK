@@ -1,4 +1,4 @@
-package com.example.joddb_app
+package com.joddb.task
 
 import io.flutter.embedding.android.FlutterActivity
 

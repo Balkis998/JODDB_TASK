@@ -7,14 +7,6 @@ class AppBlocObserver extends BlocObserver {
   @override
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
-
-    // Trigger checkAuthHandler on any state change (you can fine-tune this as needed)
-    // if (bloc is CheckAuthCubit) {
-    //   checkAuthCubit.checkAuthHandler();
-    // }
-    // if (bloc is RefreshTokenCubit) {
-    //   refreshTokenCubit.refreshTokenHandler();
-    // }
   }
 
   @override

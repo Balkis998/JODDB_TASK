@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../Core/Style/assets.dart';
 import 'Widgets/login_body.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -9,6 +10,16 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: LoginBody());
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(ImageAssets.background),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Scaffold(backgroundColor: Colors.transparent, body: LoginBody()),
+    );
   }
 }

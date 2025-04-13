@@ -1,9 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../Language/config.dart';
-import '../Style/assets.dart';
 import '../Theme/app_colors.dart';
+import '../Theme/text_theme.dart';
 import 'form_widget.dart';
 
 class DatePickerField extends StatefulWidget {
@@ -42,14 +42,13 @@ class DatePickerFieldState extends State<DatePickerField> {
         );
       },
       initialDate: DateTime.now(),
-      firstDate: DateTime(1700),
-      lastDate: DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2043),
     );
     if (picked != null) {
       setState(() {
         selectedDate = picked;
-        widget.controller.text =
-            '${selectedDate.year}-${selectedDate.month.toString().padLeft(2, '0')}-${selectedDate.day.toString().padLeft(2, '0')}';
+        widget.controller.text = DateFormat('MMM d, yyyy').format(selectedDate);
       });
     }
   }
@@ -60,14 +59,18 @@ class DatePickerFieldState extends State<DatePickerField> {
       width: double.infinity,
       child: TextFormFieldWidget(
         hint: widget.hint,
+        title: 'Date',
+        titleColor: AppColors.white,
+        style: TextThemeStyle.textThemeStyle.titleLarge!.copyWith(
+          fontWeight: FontWeight.w600,
+          color: AppColors.white,
+        ),
         controller: widget.controller,
         keyboardType: TextInputType.text,
         readOnly: true,
+        isUnderLine: true,
         validator: widget.validator,
-        suffixIcon: IconButton(
-          icon: SvgPicture.asset(SvgAssets.calendar),
-          onPressed: () => selectDate(context),
-        ),
+        onTap: () => selectDate(context),
       ),
     );
   }
