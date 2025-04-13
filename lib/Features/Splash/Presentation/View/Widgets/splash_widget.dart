@@ -21,16 +21,20 @@ class _SplashWidgetState extends State<SplashWidget> {
 
   void _navigateAfterDelay() async {
     final prefs = locator<SharedPreferences>();
-    final isLoggedIn = prefs.containsKey('access_token');
+    final String? token = prefs.getString('firebase_token'); // Retrieve token
 
     await Future.delayed(const Duration(seconds: 3));
 
     if (!mounted) return;
 
+    // Check if token exists and navigate accordingly
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder:
-            (context) => isLoggedIn ? const MainScreen() : const LoginScreen(),
+            (context) =>
+                token != null && token != '' && token.isNotEmpty
+                    ? const MainScreen() // Navigate to MainScreen if token exists
+                    : const LoginScreen(), // Navigate to LoginScreen if no token
       ),
     );
   }

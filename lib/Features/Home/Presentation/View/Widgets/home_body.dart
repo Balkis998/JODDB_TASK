@@ -40,7 +40,7 @@ class HomeBody extends StatelessWidget {
           ),
           TasksWidget(),
           StaticSpacer.spacer48,
-          ProgressWidget(),
+          ProgressWidget(text: 'Progress'),
         ],
       ),
     );

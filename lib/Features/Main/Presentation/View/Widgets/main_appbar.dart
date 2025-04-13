@@ -5,15 +5,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../../Core/Style/assets.dart';
 import '../../../../../Core/Style/icon_style.dart';
-import '../../../../../Core/Theme/app_colors.dart';
-import '../../../../../Core/Theme/text_theme.dart';
 
 class MainAppbar extends StatelessWidget {
-  final Color? color;
-  final bool isBack;
-  final String? title;
-
-  const MainAppbar({super.key, this.color, this.isBack = false, this.title});
+  const MainAppbar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +24,7 @@ class MainAppbar extends StatelessWidget {
           },
         ),
       ),
-      title: Text(
-        '',
-        style: TextThemeStyle.textThemeStyle.titleLarge!.copyWith(
-          color: AppColors.mainColor,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
+
       actions: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),

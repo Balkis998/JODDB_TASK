@@ -23,7 +23,11 @@ void setupLocator() async {
 
   // Register AuthCubit with FirebaseAuth injected
   locator.registerFactory(
-    () => AuthCubit(locator<FirebaseAuth>(), locator<FirebaseFirestore>()),
+    () => AuthCubit(
+      locator<FirebaseAuth>(),
+      locator<FirebaseFirestore>(),
+      locator<SharedPreferences>(),
+    ),
   );
 
   locator.registerLazySingleton<MainScreenCubit>(() => MainScreenCubit());

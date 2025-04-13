@@ -8,6 +8,7 @@ import 'Core/Language/config.dart';
 import 'Core/Services/globals.dart';
 import 'Core/Utils/bloc_observer.dart';
 import 'Core/Utils/locator.dart';
+import 'Features/Main/Presentation/BloC/MainCubit/main_screen_cubit.dart';
 import 'my_app.dart';
 
 void main() async {
@@ -31,7 +32,10 @@ void main() async {
       ],
       path: ConfigLanguage.langPath,
       fallbackLocale: ConfigLanguage.enLocale,
-      child: const MyApp(),
+      child: BlocProvider(
+        create: (context) => locator<MainScreenCubit>(),
+        child: const MyApp(),
+      ),
     ),
   );
 }

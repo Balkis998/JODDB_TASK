@@ -10,7 +10,8 @@ import '../../../../../Core/Theme/text_theme.dart';
 import 'gradiant_widget.dart';
 
 class ProgressWidget extends StatelessWidget {
-  const ProgressWidget({super.key});
+  final String text;
+  const ProgressWidget({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class ProgressWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Progress',
+            text,
             style: TextThemeStyle.textThemeStylePrimary.headlineSmall!.copyWith(
               fontWeight: FontWeight.w800,
             ),
