@@ -19,9 +19,7 @@ class MainAppbar extends StatelessWidget {
         padding: const EdgeInsets.all(6.0),
         child: IconButtonStyleWidget(
           icon: SvgPicture.asset(SvgAssets.drawerMenu),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () {},
         ),
       ),
 
@@ -30,9 +28,7 @@ class MainAppbar extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: IconButtonStyleWidget(
             icon: SvgPicture.asset(SvgAssets.profile),
-            onPressed: () {
-              Navigator.pop(context);
-            },
+            onPressed: () {},
           ),
         ),
       ],
