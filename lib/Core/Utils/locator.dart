@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,6 +16,12 @@ void setupLocator() async {
   // Firebase Auth instance
   locator.registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
 
+  locator.registerLazySingleton<FirebaseFirestore>(
+    () => FirebaseFirestore.instance,
+  );
+
   // Register AuthCubit with FirebaseAuth injected
-  locator.registerFactory(() => AuthCubit(locator<FirebaseAuth>()));
+  locator.registerFactory(
+    () => AuthCubit(locator<FirebaseAuth>(), locator<FirebaseFirestore>()),
+  );
 }

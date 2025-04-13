@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../Core/Style/form_style.dart';
 import '../../Core/Theme/text_theme.dart';
 import '../Services/Spacer/spacer_static.dart';
+import '../Theme/app_colors.dart';
 
 class TextFormFieldWidget extends StatelessWidget {
   final TextEditingController? controller;
@@ -76,7 +77,12 @@ class TextFormFieldWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title ?? '', style: TextThemeStyle.textThemeStyle.bodyMedium!),
+        Text(
+          title ?? '',
+          style: TextThemeStyle.textThemeStyle.bodyMedium!.copyWith(
+            color: AppColors.grey,
+          ),
+        ),
         StaticSpacer.spacer4,
         TextFormField(
           controller: controller,

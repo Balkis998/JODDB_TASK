@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../Services/Spacer/spacer_static.dart';
+import '../Theme/app_colors.dart';
 import '../Theme/text_theme.dart';
 import '../Style/form_style.dart';
 import '../Style/assets.dart';
@@ -57,8 +58,11 @@ class _PasswordFieldState extends State<PasswordField> {
       children: [
         Text(
           widget.title ?? '',
-          style: TextThemeStyle.textThemeStyle.bodyMedium!,
+          style: TextThemeStyle.textThemeStyle.bodyMedium!.copyWith(
+            color: AppColors.grey,
+          ),
         ),
+
         StaticSpacer.spacer4,
         TextFormField(
           style: TextThemeStyle.textThemeStyle.bodyMedium,

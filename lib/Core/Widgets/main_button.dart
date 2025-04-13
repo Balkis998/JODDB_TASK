@@ -67,15 +67,11 @@ class MainButton extends StatelessWidget {
                   : isDisabled
                   ? AppColors.grey
                   : color ?? AppColors.primary,
-          gradient:
-              isGradiunt == true
-                  ? LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: gradiuntColors!,
-                    stops: const [0.0, 1.0], // Gradient stops
-                  )
-                  : null,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [AppColors.secondaryColor, AppColors.secondaryBLueColor],
+          ),
         ),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
