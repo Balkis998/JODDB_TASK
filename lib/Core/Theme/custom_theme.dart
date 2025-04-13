@@ -9,6 +9,8 @@ class CustomTheme {
   // * * * * * * * * * * * * *** Light *** * * * * * * * * * * * *
   static ThemeData lightTheme(BuildContext context) {
     TextThemeStyle.setTextTheme(context);
+    TextThemeStyle.setTextThemePrimary(context);
+
     return ThemeData.light().copyWith(
       scaffoldBackgroundColor: Colors.white,
       appBarTheme: AppBarTheme(
@@ -41,7 +43,7 @@ class CustomTheme {
       ),
       textTheme: Theme.of(context).textTheme.apply(
         bodyColor: AppColors.mainColor,
-        displayColor: AppColors.grey,
+        displayColor: AppColors.mainColor,
         fontFamily: 'Inter',
       ),
       dividerColor: AppColors.lightColor,

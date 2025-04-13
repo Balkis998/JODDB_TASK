@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class MainBody extends StatelessWidget {
-  const MainBody({super.key});
+class CalendarBody extends StatelessWidget {
+  const CalendarBody({super.key});
 
   @override
   Widget build(BuildContext context) {

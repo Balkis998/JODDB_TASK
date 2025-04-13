@@ -2,6 +2,7 @@ class ImageAssets {
   static const String splash = "assets/images/splash.png";
   static const String noImage = "assets/images/no_image.png";
   static const String background = "assets/images/background.png";
+  static const String cardBG = "assets/images/card-bg.png";
 }
 
 class SvgAssets {
@@ -20,6 +21,9 @@ class SvgAssets {
 
   static const String drawerMenu = "assets/svgs/drawer-menu.svg";
   static const String profile = "assets/svgs/profile.svg";
+
+  static const String list = "assets/svgs/list.svg";
+  static const String think = "assets/svgs/think.svg";
 }
 
 class LottieAssets {}

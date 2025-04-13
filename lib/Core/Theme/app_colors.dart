@@ -20,18 +20,18 @@ class AppColors {
   static Color secondaryColor = _colorFromHex('#9C2CF3'); //
   static Color secondaryBLueColor = _colorFromHex('#3A49F9');
 
-  static Color backgroundColor = _colorFromHex('#E5EAFC');
+  static Color backgroundColor = _colorFromHex('#F2F5FF');
 
   static Color blackColor = _colorFromHex('#000000');
   static Color white = _colorFromHex('#FFFFFF');
 
-  static Color lightColor = _colorFromHex('#D8DEF3');
+  static Color lightColor = _colorFromHex('#E5EAFC');
   static Color grey = _colorFromHex('#6C7278'); // ACB5BB
 
   static Color borderColor = _colorFromHex('#ACB5BB');
   static Color hintColor = _colorFromHex('#BABABA');
 
-  static Color formBorderColor = _colorFromHex("#E9E9E9");
+  static Color formBorderColor = _colorFromHex("#D8DEF3");
   static Color formFillColor = _colorOpacity20FromHex("#FFFFFF");
 
   static Color errorColor = _colorFromHex("#D70404");
