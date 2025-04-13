@@ -71,6 +71,8 @@ class TasksWidgetState extends State<TasksWidget> {
     );
   }
 
+  int selectedTabIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -78,37 +80,33 @@ class TasksWidgetState extends State<TasksWidget> {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(75),
-                color: AppColors.white,
-              ),
-              child: Text(
-                'My Tasks',
-                style: TextThemeStyle.textThemeStylePrimary.bodyMedium!
-                    .copyWith(fontWeight: FontWeight.w700),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(75),
-                color: AppColors.lightColor,
-              ),
+          children: List.generate(3, (index) {
+            final isSelected = selectedTabIndex == index;
+            final labels = ['My Tasks', 'In-progress', 'Completed'];
 
-              child: Text('In-progress'),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(75),
-                color: AppColors.lightColor,
+            return GestureDetector(
+              onTap: () {
+                setState(() {
+                  selectedTabIndex = index;
+                });
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(75),
+                  color: isSelected ? AppColors.white : AppColors.lightColor,
+                ),
+                child: Text(
+                  labels[index],
+                  style: TextThemeStyle.textThemeStylePrimary.bodyMedium!
+                      .copyWith(
+                        fontWeight:
+                            isSelected ? FontWeight.w700 : FontWeight.w500,
+                      ),
+                ),
               ),
-              child: Text('Completed'),
-            ),
-          ],
+            );
+          }),
         ),
         StaticSpacer.spacer24,
 
@@ -122,81 +120,93 @@ class TasksWidgetState extends State<TasksWidget> {
                 borderRadius: BorderRadius.circular(24),
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 4),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
 
                   decoration: BoxDecoration(
-                    // boxShadow: [
-                    //   BoxShadow(
-                    //     color: AppColors.blackColor.withOpacity(0.16),
-                    //     blurRadius: 24,
-                    //     spreadRadius: 0,
-                    //     offset: Offset(0, 12),
-                    //   ),
-                    // ],
-                    // color: Colors.red, // TODO
-                    image: DecorationImage(
-                      image: AssetImage(ImageAssets.cardBG),
-                      fit: BoxFit.cover,
-                      alignment: Alignment.center,
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        AppColors.secondaryColor,
+                        AppColors.secondaryBLueColor,
+                      ],
                     ),
 
                     borderRadius: BorderRadius.circular(24),
                   ),
                   width: MediaQuery.of(context).size.width * 0.6,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  child: Stack(
                     children: [
-                      Row(
-                        children: [
-                          Container(
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              color: AppColors.white.withOpacity(0.2),
-                            ),
-                            child: Center(
-                              child: SvgPicture.asset(SvgAssets.think),
-                            ),
-                          ),
-                          StaticSpacer.spacer16W,
+                      Positioned(
+                        right: 0,
+                        top: 0,
+                        child: Image.asset(ImageAssets.cardTop, width: 80),
+                      ),
+                      Positioned(
+                        left: 0,
+                        bottom: -70,
+                        child: Image.asset(ImageAssets.cardBottom, width: 80),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    color: AppColors.white.withOpacity(0.2),
+                                  ),
+                                  child: Center(
+                                    child: SvgPicture.asset(SvgAssets.think),
+                                  ),
+                                ),
+                                StaticSpacer.spacer16W,
 
-                          Expanded(
-                            child: Text(
-                              'Project 1',
+                                Expanded(
+                                  child: Text(
+                                    'Project 1',
+                                    style: TextThemeStyle
+                                        .textThemeStylePrimary
+                                        .bodyLarge!
+                                        .copyWith(
+                                          color: AppColors.white,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            Text(
+                              'Front-End Development',
+                              style: TextThemeStyle
+                                  .textThemeStylePrimary
+                                  .headlineSmall!
+                                  .copyWith(
+                                    color: AppColors.white,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                            ),
+
+                            Text(
+                              'October 20, 2020',
                               style: TextThemeStyle
                                   .textThemeStylePrimary
                                   .bodyLarge!
-                                  .copyWith(
-                                    color: AppColors.white,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                  .copyWith(color: AppColors.white),
                             ),
-                          ),
-                        ],
+                            StaticSpacer.spacer4,
+                          ],
+                        ),
                       ),
-
-                      Text(
-                        'Front-End Development',
-                        style: TextThemeStyle
-                            .textThemeStylePrimary
-                            .headlineSmall!
-                            .copyWith(
-                              color: AppColors.white,
-                              fontWeight: FontWeight.w700,
-                            ),
-                      ),
-
-                      Text(
-                        'October 20, 2020',
-                        style: TextThemeStyle.textThemeStylePrimary.bodyLarge!
-                            .copyWith(color: AppColors.white),
-                      ),
-                      StaticSpacer.spacer4,
                     ],
                   ),
                 ),

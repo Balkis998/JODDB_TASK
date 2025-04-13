@@ -17,6 +17,10 @@ import '../../../../../Core/Utils/locator.dart';
 import '../../../../../Core/Widgets/custome_loding_widget.dart';
 import '../../../../Auth/Presentation/BloC/AuthCubit/auth_cubit.dart';
 import '../../../../Auth/Presentation/View/login_screen.dart';
+import '../../../../Calendar/Presentation/View/calendar_screen.dart';
+import '../../../../Profile/Presentation/View/profile_screen.dart';
+import '../../BloC/MainCubit/main_screen_cubit.dart';
+import '../main_screen.dart';
 
 final ScrollController scrollController = ScrollController();
 
@@ -28,7 +32,7 @@ class DrawerBody extends StatelessWidget {
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
       child: Container(
-        color: Colors.white,
+        color: AppColors.backgroundColor,
         height: double.infinity,
         width: 300,
         child: Column(
@@ -46,7 +50,7 @@ class DrawerBody extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                // Navigator.pushNamed(context, ProfileScreen.id);
+                Navigator.pushNamed(context, ProfileScreen.id);
               },
             ),
 
@@ -60,7 +64,8 @@ class DrawerBody extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                // Navigator.pushNamed(context, AttendanceFilterScreen.id);
+                scaffoldKey.currentState!.closeDrawer();
+                context.read<MainScreenCubit>().changePage(CalendarScreen.id);
               },
             ),
 

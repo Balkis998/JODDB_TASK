@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../../Core/Style/assets.dart';
 import '../../../../../Core/Style/icon_style.dart';
+import '../../../../Profile/Presentation/View/profile_screen.dart';
 import '../main_screen.dart';
 
 class MainAppbar extends StatelessWidget {
@@ -31,7 +32,9 @@ class MainAppbar extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: IconButtonStyleWidget(
             icon: SvgPicture.asset(SvgAssets.profile),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, ProfileScreen.id);
+            },
           ),
         ),
       ],

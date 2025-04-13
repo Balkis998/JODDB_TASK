@@ -81,13 +81,14 @@ class TextFormFieldWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title ?? '',
-          style: TextThemeStyle.textThemeStyle.bodyLarge!.copyWith(
-            color: titleColor ?? AppColors.grey,
+        if (title != null)
+          Text(
+            title!,
+            style: TextThemeStyle.textThemeStyle.bodyLarge!.copyWith(
+              color: titleColor ?? AppColors.grey,
+            ),
           ),
-        ),
-        StaticSpacer.spacer4,
+        if (title != null) StaticSpacer.spacer4,
         TextFormField(
           controller: controller,
           initialValue: value,
