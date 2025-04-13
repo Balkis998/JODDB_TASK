@@ -19,6 +19,7 @@ import '../../../../Auth/Presentation/BloC/AuthCubit/auth_cubit.dart';
 import '../../../../Auth/Presentation/View/login_screen.dart';
 import '../../../../Calendar/Presentation/View/calendar_screen.dart';
 import '../../../../Profile/Presentation/View/profile_screen.dart';
+import '../../../../Settings/Presentation/View/settings_screen.dart';
 import '../../BloC/MainCubit/main_screen_cubit.dart';
 import '../main_screen.dart';
 
@@ -79,7 +80,7 @@ class DrawerBody extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                // Navigator.pushNamed(context, SettingsScreen.id);
+                Navigator.pushNamed(context, SettingsScreen.id);
               },
             ),
             const Spacer(),

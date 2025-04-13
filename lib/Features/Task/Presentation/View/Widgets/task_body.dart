@@ -118,6 +118,8 @@ class _CreateTaskBodyState extends State<CreateTaskBody> {
                                     fontWeight: FontWeight.w600,
                                     color: AppColors.white,
                                   ),
+                              validator:
+                                  (value) => FormValidato.textValidate(value),
                               controller: _nameController,
                               titleColor: AppColors.white,
                             ),
@@ -125,6 +127,8 @@ class _CreateTaskBodyState extends State<CreateTaskBody> {
                             DatePickerField(
                               controller: _dateController,
                               hint: 'Oct 23, 2020',
+                              validator:
+                                  (value) => FormValidato.textValidate(value),
                             ),
                           ],
                         ),
@@ -153,7 +157,6 @@ class _CreateTaskBodyState extends State<CreateTaskBody> {
                   TimePickerWidget(
                     controllerFrom: _timeFromController,
                     controllerTo: _timeToController,
-                    dateSelected: _dateController.text,
                     validator: (value) => FormValidato.textValidate(value),
                   ),
                   Divider(color: AppColors.titleColor, height: 48),
@@ -165,6 +168,7 @@ class _CreateTaskBodyState extends State<CreateTaskBody> {
                     style: TextThemeStyle.textThemeStyle.titleLarge!.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
+                    validator: (value) => FormValidato.textValidate(value),
                     maxLines: 4,
                     titleColor: AppColors.titleColor,
                     controller: _descController,
@@ -176,6 +180,7 @@ class _CreateTaskBodyState extends State<CreateTaskBody> {
                       color: AppColors.titleColor,
                     ),
                   ),
+                  StaticSpacer.spacer16,
                   GridView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -183,7 +188,7 @@ class _CreateTaskBodyState extends State<CreateTaskBody> {
                       crossAxisCount: 3,
                       mainAxisSpacing: 0,
                       crossAxisSpacing: 0,
-                      childAspectRatio: 3 / 2,
+                      childAspectRatio: 4 / 2,
                     ),
                     padding: EdgeInsets.zero,
                     itemCount: categoryList.length,
