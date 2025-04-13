@@ -7,6 +7,7 @@ import '../../../../../Core/Services/Spacer/spacer_static.dart';
 import '../../../../../Core/Style/assets.dart';
 import '../../../../../Core/Theme/app_colors.dart';
 import '../../../../../Core/Theme/text_theme.dart';
+import '../../../Model/tasks.dart';
 
 class TasksWidget extends StatefulWidget {
   const TasksWidget({super.key});
@@ -16,10 +17,8 @@ class TasksWidget extends StatefulWidget {
 }
 
 class TasksWidgetState extends State<TasksWidget> {
-  final PageController _pageController = PageController(viewportFraction: 0.5);
+  final PageController _pageController = PageController(viewportFraction: 0.75);
   int _currentIndex = 0;
-
-  final List<Color> colors = [Colors.purple, Colors.blue];
 
   @override
   void initState() {
@@ -43,7 +42,7 @@ class TasksWidgetState extends State<TasksWidget> {
   Widget _buildIndicator() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(colors.length, (index) {
+      children: List.generate(tasksList.length, (index) {
         bool isActive = index == _currentIndex;
         return AnimatedContainer(
           duration: const Duration(milliseconds: 300),
@@ -114,38 +113,51 @@ class TasksWidgetState extends State<TasksWidget> {
           height: 250,
           child: PageView.builder(
             controller: _pageController,
-            itemCount: colors.length,
+            padEnds: false,
+            itemCount: tasksList.length,
             itemBuilder: (context, index) {
+              bool isActive = index == _currentIndex;
               return ClipRRect(
                 borderRadius: BorderRadius.circular(24),
+                clipBehavior: Clip.hardEdge,
                 child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 4),
+                  margin: EdgeInsets.only(left: index == 0 ? 16 : 0, right: 32),
 
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        AppColors.secondaryColor,
-                        AppColors.secondaryBLueColor,
-                      ],
-                    ),
-
+                    gradient:
+                        isActive
+                            ? LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                AppColors.secondaryColor,
+                                AppColors.secondaryBLueColor,
+                              ],
+                            )
+                            : null,
+                    color:
+                        !isActive
+                            ? AppColors.secondaryColor.withOpacity(0.2)
+                            : Colors.white,
                     borderRadius: BorderRadius.circular(24),
                   ),
                   width: MediaQuery.of(context).size.width * 0.6,
                   child: Stack(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
                     children: [
-                      Positioned(
-                        right: 0,
-                        top: 0,
-                        child: Image.asset(ImageAssets.cardTop, width: 80),
-                      ),
-                      Positioned(
-                        left: 0,
-                        bottom: -70,
-                        child: Image.asset(ImageAssets.cardBottom, width: 80),
-                      ),
+                      if (isActive)
+                        Positioned(
+                          right: 0,
+                          top: 0,
+                          child: Image.asset(ImageAssets.cardTop, width: 80),
+                        ),
+                      if (isActive)
+                        Positioned(
+                          left: 0,
+                          bottom: -70,
+                          child: Image.asset(ImageAssets.cardBottom, width: 80),
+                        ),
+
                       Padding(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 16,
@@ -172,7 +184,7 @@ class TasksWidgetState extends State<TasksWidget> {
 
                                 Expanded(
                                   child: Text(
-                                    'Project 1',
+                                    tasksList[index]['title'],
                                     style: TextThemeStyle
                                         .textThemeStylePrimary
                                         .bodyLarge!
@@ -186,7 +198,7 @@ class TasksWidgetState extends State<TasksWidget> {
                             ),
 
                             Text(
-                              'Front-End Development',
+                              tasksList[index]['team'],
                               style: TextThemeStyle
                                   .textThemeStylePrimary
                                   .headlineSmall!
@@ -197,7 +209,7 @@ class TasksWidgetState extends State<TasksWidget> {
                             ),
 
                             Text(
-                              'October 20, 2020',
+                              tasksList[index]['date'],
                               style: TextThemeStyle
                                   .textThemeStylePrimary
                                   .bodyLarge!

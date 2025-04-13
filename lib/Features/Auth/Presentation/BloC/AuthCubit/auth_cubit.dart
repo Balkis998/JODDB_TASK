@@ -38,6 +38,8 @@ class AuthCubit extends Cubit<AuthState> {
       await _saveTokenToSharedPreferences(token ?? '');
 
       emit(AuthSuccess());
+    } on FirebaseAuthException catch (e) {
+      emit(AuthFailure(_getFirebaseAuthErrorMessage(e.code)));
     } catch (e) {
       emit(AuthFailure(e.toString()));
     }
@@ -53,6 +55,8 @@ class AuthCubit extends Cubit<AuthState> {
       String? token = await userCredential.user!.getIdToken();
       await _saveTokenToSharedPreferences(token ?? '');
       emit(AuthSuccess());
+    } on FirebaseAuthException catch (e) {
+      emit(AuthFailure(_getFirebaseAuthErrorMessage(e.code)));
     } catch (e) {
       emit(AuthFailure(e.toString()));
     }
@@ -70,5 +74,26 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> _saveTokenToSharedPreferences(String token) async {
     await _sharedPreferences.setString('firebase_token', token);
+  }
+
+  String _getFirebaseAuthErrorMessage(String code) {
+    switch (code) {
+      case 'user-not-found':
+        return 'No user found with this email.';
+      case 'wrong-password':
+        return 'Incorrect password.';
+      case 'invalid-email':
+        return 'The email address is not valid.';
+      case 'user-disabled':
+        return 'This user account has been disabled.';
+      case 'email-already-in-use':
+        return 'This email is already registered.';
+      case 'weak-password':
+        return 'Your password is too weak.';
+      case 'operation-not-allowed':
+        return 'Email/password accounts are not enabled.';
+      default:
+        return 'Authentication failed. Please try again.';
+    }
   }
 }
