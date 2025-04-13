@@ -42,7 +42,7 @@ class _SplashWidgetState extends State<SplashWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Image.asset(ImageAssets.splash, fit: BoxFit.cover)),
+      body: Center(child: Image.asset(ImageAssets.logo, fit: BoxFit.cover)),
     );
   }
 }

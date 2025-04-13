@@ -10,6 +10,7 @@ import 'Core/Language/config.dart';
 import 'Core/Services/globals.dart';
 import 'Core/Utils/bloc_observer.dart';
 import 'Core/Utils/locator.dart';
+import 'Features/Auth/Presentation/BloC/AuthCubit/auth_cubit.dart';
 import 'Features/Main/Presentation/BloC/MainCubit/main_screen_cubit.dart';
 import 'my_app.dart';
 
@@ -37,8 +38,11 @@ void main() async {
       ],
       path: ConfigLanguage.langPath,
       fallbackLocale: ConfigLanguage.enLocale,
-      child: BlocProvider(
-        create: (context) => locator<MainScreenCubit>(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => locator<MainScreenCubit>()),
+          BlocProvider(create: (_) => locator<AuthCubit>()),
+        ],
         child: const MyApp(),
       ),
     ),

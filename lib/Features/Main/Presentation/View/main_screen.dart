@@ -10,7 +10,10 @@ import '../../../Notification/Presentation/View/notification_screen.dart';
 import '../BloC/MainCubit/main_screen_cubit.dart';
 import '../BloC/MainCubit/main_screen_state.dart';
 import 'Widgets/bottom_nav_widget.dart';
+import 'Widgets/drawer_body.dart';
 import 'Widgets/main_appbar.dart';
+
+final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
 class MainScreen extends StatelessWidget {
   static const String id = 'MainScreen';
@@ -27,6 +30,8 @@ class MainScreen extends StatelessWidget {
           color: AppColors.backgroundColor,
           child: Scaffold(
             backgroundColor: Colors.transparent,
+            key: scaffoldKey,
+
             appBar: PreferredSize(
               preferredSize: Size.fromHeight(70.h),
               child:
@@ -37,7 +42,7 @@ class MainScreen extends StatelessWidget {
 
             resizeToAvoidBottomInset: false,
             bottomNavigationBar: const BottomNavWidget(),
-            // drawer: const DrawerScreen(),
+            drawer: const DrawerBody(),
             body: _getScreenFromId(state.currentPage),
           ),
         );

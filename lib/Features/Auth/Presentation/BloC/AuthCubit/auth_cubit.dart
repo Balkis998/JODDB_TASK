@@ -59,8 +59,13 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> logout() async {
-    await _auth.signOut();
-    emit(AuthInitial());
+    try {
+      emit(AuthLoading());
+      await _auth.signOut();
+      emit(AuthSuccess());
+    } catch (e) {
+      emit(AuthFailure(e.toString()));
+    }
   }
 
   Future<void> _saveTokenToSharedPreferences(String token) async {

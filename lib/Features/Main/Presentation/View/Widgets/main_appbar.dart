@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../../Core/Style/assets.dart';
 import '../../../../../Core/Style/icon_style.dart';
+import '../main_screen.dart';
 
 class MainAppbar extends StatelessWidget {
   const MainAppbar({super.key});
@@ -19,7 +20,9 @@ class MainAppbar extends StatelessWidget {
         padding: const EdgeInsets.all(6.0),
         child: IconButtonStyleWidget(
           icon: SvgPicture.asset(SvgAssets.drawerMenu),
-          onPressed: () {},
+          onPressed: () {
+            scaffoldKey.currentState!.openDrawer();
+          },
         ),
       ),
 

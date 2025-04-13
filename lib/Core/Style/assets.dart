@@ -6,6 +6,7 @@ class ImageAssets {
   static const String cardMask = "assets/images/card_mask.png";
   static const String cardTop = "assets/images/card-top.png";
   static const String cardBottom = "assets/images/card-bottom.png";
+  static const String logo = "assets/images/logo.png";
 }
 
 class SvgAssets {
@@ -27,6 +28,11 @@ class SvgAssets {
 
   static const String list = "assets/svgs/list.svg";
   static const String think = "assets/svgs/think.svg";
+
+  static const String logout = "assets/svgs/logout.svg";
+  static const String setting = "assets/svgs/setting.svg";
+  static const String user = "assets/svgs/user.svg";
+  static const String clock = "assets/svgs/clock.svg";
 }
 
 class LottieAssets {}
