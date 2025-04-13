@@ -36,6 +36,8 @@ class TextFormFieldWidget extends StatelessWidget {
   final FocusNode? focusNode;
   final Color? borderColor;
   final Color? focusBorderColor;
+  final Color? titleColor;
+  final bool isUnderLine;
   final bool obscureText;
   final Color? containerColor;
   const TextFormFieldWidget({
@@ -44,6 +46,7 @@ class TextFormFieldWidget extends StatelessWidget {
     required this.hint,
     this.maxLines,
     this.readOnly = false,
+    this.isUnderLine = false,
     this.onTap,
     this.validator,
     this.keyboardType,
@@ -70,6 +73,7 @@ class TextFormFieldWidget extends StatelessWidget {
     this.obscureText = false,
     this.focusBorderColor,
     this.containerColor,
+    this.titleColor,
   });
 
   @override
@@ -79,8 +83,8 @@ class TextFormFieldWidget extends StatelessWidget {
       children: [
         Text(
           title ?? '',
-          style: TextThemeStyle.textThemeStyle.bodyMedium!.copyWith(
-            color: AppColors.grey,
+          style: TextThemeStyle.textThemeStyle.bodyLarge!.copyWith(
+            color: titleColor ?? AppColors.grey,
           ),
         ),
         StaticSpacer.spacer4,
@@ -105,21 +109,38 @@ class TextFormFieldWidget extends StatelessWidget {
             SystemChannels.textInput.invokeMethod('TextInput.hide');
           },
           style: style ?? TextThemeStyle.textThemeStyle.bodyMedium,
-          decoration: AppStyles.formStyle(
-            hint,
-            radius: radius ?? 10,
-            borderColor: borderColor,
-            labelColor: labelColor,
-            filledColor: filledColor ?? Colors.transparent,
-            suffixIcon: suffixIcon,
-            suffix: suffix,
-            prefixIcon: prefixIcon,
-            focusBorderColor: focusBorderColor,
-            contentPadding:
-                contentPadding ??
-                EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
-            context: context,
-          ),
+          decoration:
+              isUnderLine
+                  ? AppStyles.underlineFormStyle(
+                    hint,
+                    radius: radius ?? 10,
+                    borderColor: borderColor,
+                    labelColor: labelColor,
+                    filledColor: filledColor ?? Colors.transparent,
+                    suffixIcon: suffixIcon,
+                    suffix: suffix,
+                    prefixIcon: prefixIcon,
+                    focusBorderColor: focusBorderColor,
+                    contentPadding:
+                        contentPadding ??
+                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+                    context: context,
+                  )
+                  : AppStyles.formStyle(
+                    hint,
+                    radius: radius ?? 10,
+                    borderColor: borderColor,
+                    labelColor: labelColor,
+                    filledColor: filledColor ?? Colors.transparent,
+                    suffixIcon: suffixIcon,
+                    suffix: suffix,
+                    prefixIcon: prefixIcon,
+                    focusBorderColor: focusBorderColor,
+                    contentPadding:
+                        contentPadding ??
+                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+                    context: context,
+                  ),
         ),
       ],
     );

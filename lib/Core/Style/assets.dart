@@ -3,6 +3,9 @@ class ImageAssets {
   static const String noImage = "assets/images/no_image.png";
   static const String background = "assets/images/background.png";
   static const String cardBG = "assets/images/card-bg.png";
+  static const String cardMask = "assets/images/card_mask.png";
+  static const String cardTop = "assets/images/card-top.png";
+  static const String cardBottom = "assets/images/card-bottom.png";
 }
 
 class SvgAssets {

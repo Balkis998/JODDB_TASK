@@ -14,7 +14,7 @@ class AppRoutes {
     RegisterScreen.id: (context) => const RegisterScreen(),
     MainScreen.id: (context) => const MainScreen(),
     HomeScreen.id: (context) => const HomeScreen(),
-    TaskScreen.id: (context) => const TaskScreen(),
+    CreateTaskScreen.id: (context) => const CreateTaskScreen(),
     NotificationScreen.id: (context) => const NotificationScreen(),
   };
 }

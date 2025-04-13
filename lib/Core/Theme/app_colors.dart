@@ -28,7 +28,7 @@ class AppColors {
   static Color lightColor = _colorFromHex('#E5EAFC');
   static Color grey = _colorFromHex('#6C7278'); // ACB5BB
 
-  static Color borderColor = _colorFromHex('#ACB5BB');
+  static Color borderColor = _colorFromHex('#D7DDF0');
   static Color hintColor = _colorFromHex('#BABABA');
 
   static Color formBorderColor = _colorFromHex("#D8DEF3");
@@ -36,8 +36,8 @@ class AppColors {
 
   static Color errorColor = _colorFromHex("#D70404");
 
-  static Color borderGrey = _colorFromHex("#CAC8C8");
+  static Color titleColor = _colorFromHex("#BFC8E8");
   static Color red = _colorFromHex('#FF270E');
   static Color infoColor = _colorFromHex('#4D81E7');
 }
- // 
+ // #

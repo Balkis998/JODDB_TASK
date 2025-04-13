@@ -7,6 +7,7 @@ import 'package:joddb_app/Core/Widgets/main_button.dart';
 import '../../../../../Core/Services/Spacer/spacer_static.dart';
 import '../../../../../Core/Theme/app_colors.dart';
 import '../../../../../Core/Theme/text_theme.dart';
+import '../../../../Task/Presentation/View/task_screen.dart';
 import 'gradinat_text_widget.dart';
 
 class CalenderWidget extends StatefulWidget {
@@ -69,7 +70,9 @@ class _CalenderWidgetState extends State<CalenderWidget> {
                     ),
                   ],
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, CreateTaskScreen.id);
+                },
                 radius: 75,
               ),
             ],
