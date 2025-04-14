@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -39,7 +40,15 @@ class ProgressWidget extends StatelessWidget {
               return ValueListenableBuilder(
                 valueListenable: box.listenable(),
                 builder: (context, Box taskBox, _) {
-                  final allTasks = taskBox.values.toList();
+                  final user = FirebaseAuth.instance.currentUser;
+                  if (user == null) {
+                    return Text('User not logged in.');
+                  }
+
+                  final allTasks =
+                      taskBox.values.where((task) {
+                        return task['userID'] == user.uid;
+                      }).toList();
 
                   final filteredTasks =
                       state.selectedDate != null
