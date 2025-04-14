@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:joddb_app/Core/Widgets/main_button.dart';
@@ -42,6 +44,17 @@ class _CreateTaskBodyState extends State<CreateTaskBody> {
       });
       return;
     }
+
+    final from = DateFormat.jm().parse(_timeFromController.text);
+    final to = DateFormat.jm().parse(_timeToController.text);
+
+    if (!to.isAfter(from)) {
+      CommonUi.simpleToast(message: 'End time must be after start time');
+      return;
+    }
+
+    final user = FirebaseAuth.instance.currentUser;
+
     final task = {
       'name': _nameController.text,
       'date': _dateController.text,
@@ -50,6 +63,7 @@ class _CreateTaskBodyState extends State<CreateTaskBody> {
       'timeTo': _timeToController.text,
       'category': categoryList[selectedIndex]['name'],
       'categoryID': categoryList[selectedIndex]['id'],
+      'userID': user?.uid,
     };
 
     final box = Hive.box('tasksBox');
